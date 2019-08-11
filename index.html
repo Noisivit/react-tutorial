@@ -31,7 +31,7 @@
         class AppHeader extends React.Component {
             render() {
                 return (
-                    <header className="ui fixed menu">
+                    <header className="ui menu">
                         <nav className="ui container">
                             <a href="#" className="header item">
                                 <img className="logo"
@@ -39,12 +39,16 @@
                                 Lista kontaktów
                             </a>
                             <div className="header item">
-                                <button className="ui button">Dodaj</button>
+                                <button className="ui button" onClick={this.onClick}>Dodaj</button>
                             </div>
                         </nav>
                     </header>
                 );
-            }
+            } 
+
+            onClick(){
+                alert("Kliknięto!");
+            } 
         }
 
         class ContactsList extends React.Component {
@@ -76,14 +80,18 @@
                 const { login, name, department } = this.props
                 const imgUrl = `https://api.adorable.io/avatars/55/${login}.png`;
                 return (
-                <li className="item">
-                    <img src={imgUrl} className="ui mini rounded image" />
+                <li className="item"  draggable="true">
+                    <img src={imgUrl} className="ui mini rounded image" onMouseOver={() => this.onMouseOver(name)}/>
                     <div className="content">
                     <h4 className="header">{name}</h4>
                     <div className="description">{department}</div>
                     </div>
                 </li>
                 );
+            }
+
+            onMouseOver(name){
+                console.log(`Najechano na ${name}`);
             }
         }
 
